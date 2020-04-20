@@ -39,7 +39,9 @@ var similar = [
     },
     offer: {
       title: 'Большая уютная квартира',
-      address: "location.x, location.y", //и вот хрен пойми как это сделать!
+      address: function () {
+        return location.x;
+      }, //и вот хрен пойми как это сделать!
       price: getRandomIntInclusive (1000, 100000),
       type: 'flat',
       rooms: getRandomIntInclusive (1, 5),
@@ -61,7 +63,9 @@ var similar = [
     },
     offer: {
       title: 'Маленькая неуютная квартира',
-      address: 'location.x, location.y',
+      address: function () {
+        return location.x;
+      },
       price: getRandomIntInclusive (1000, 100000),
       type: 'flat',
       rooms: getRandomIntInclusive (1, 5),
@@ -83,7 +87,9 @@ var similar = [
     },
     offer: {
       title: 'Огромный прекрасный дворец',
-      address: 'location.x, location.y',
+      address: function () {
+        return location.x;
+      },
       price: getRandomIntInclusive (1000, 100000),
       type: 'palace',
       rooms: getRandomIntInclusive (1, 5),
@@ -105,7 +111,9 @@ var similar = [
     },
     offer: {
       title: 'Маленький ужасный дворец',
-      address: 'location.x, location.y',
+      address: function () {
+        return location.x;
+      },
       price: getRandomIntInclusive (1000, 100000),
       type: 'palace',
       rooms: getRandomIntInclusive (1, 5),
@@ -127,7 +135,9 @@ var similar = [
     },
     offer: {
       title: 'Красивый гостевой домик',
-      address: 'location.x, location.y',
+      address: function () {
+        return location.x;
+      },
       price: getRandomIntInclusive (1000, 100000),
       type: 'house',
       rooms: getRandomIntInclusive (1, 5),
@@ -149,7 +159,9 @@ var similar = [
     },
     offer: {
       title: 'Некрасивый негостеприимный домик',
-      address: 'location.x, location.y',
+      address: function () {
+        return location.x;
+      },
       price: getRandomIntInclusive (1000, 100000),
       type: 'house',
       rooms: getRandomIntInclusive (1, 5),
@@ -171,7 +183,9 @@ var similar = [
     },
     offer: {
       title: 'Уютное бунгало далеко от моря',
-      address: 'location.x, location.y',
+      address: function () {
+        return location.x;
+      },
       price: getRandomIntInclusive (1000, 100000),
       type: 'bungalo',
       rooms: getRandomIntInclusive (1, 5),
@@ -193,7 +207,9 @@ var similar = [
     },
     offer: {
       title: 'Неуютное бунгало по колено в воде',
-      address: 'location.x, location.y',
+      address: function () {
+        return location.x;
+      },
       price: getRandomIntInclusive (1000, 100000),
       type: 'bungalo',
       rooms: getRandomIntInclusive (1, 5),
@@ -215,7 +231,10 @@ var similar = [
     },
     offer: {
       title: 'Большая уютная квартира',
-      address: 'location.x, location.y',
+      address: function () {
+        var coordinates = [this.location.x, this.location.y];
+        return coordinates;
+      },
       price: getRandomIntInclusive (1000, 100000),
       type: 'palace',
       rooms: getRandomIntInclusive (1, 5),
@@ -224,17 +243,22 @@ var similar = [
       checkout: '12:00',
       features: randomFeaturesLength(1, 6),
       description: '',
-      photos: randomPhotos(photos)
-    },
-    location: {
-      x: getRandomIntInclusive (100, 800),
-      y: getRandomIntInclusive (130, 630)
+      photos: randomPhotos(photos),
+      location: {
+        x: getRandomIntInclusive (100, 800),
+        y: getRandomIntInclusive (130, 630)
+      }
     }
   }
 ];
 
 var map = document.querySelector('.map');
-map.classList.remove('map--faded');
+var mapPinMain = document.querySelector('.map__pin--main');
+
+mapPinMain.addEventListener('mouseup', function () {
+  map.classList.remove('map--faded');
+  bookingForm.classList.remove('notice__form--disabled');
+});
 
 var mapPin = document.querySelector('template').content.querySelector('.map__pin');
 var mapCard = document.querySelector('template').content.querySelector('.map__card');
@@ -252,7 +276,7 @@ var renderPin = function (pin) {
 var renderCard = function (card) {
   var cardElement = mapCard.cloneNode(true);
   cardElement.querySelector('.popup__title').textContent = card.offer.title;
-  cardElement.querySelector('.popup__text--address').textContent = card.offer.address;
+  cardElement.querySelector('.popup__text--address').textContent = "Наши координаты " + card.offer.address();
   cardElement.querySelector('.popup__price').textContent = card.offer.price + "₽/ночь";
   cardElement.querySelector('.popup__text--capacity').textContent = card.offer.rooms + " комнаты для " + card.offer.guests + " гостей";
   cardElement.querySelector('.popup__text--time').textContent = "Заезд после " + card.offer.checkin + ", выезд до " + card.offer.checkout;
@@ -264,5 +288,8 @@ for (var i = 0; i < similar.length - 1; i++) {
   fragment.appendChild(renderPin(similar[i]));
 };
 
-mapPins.appendChild(fragment);
-map.insertBefore(renderCard(similar[i]), mapFilters);
+var bookingForm = document.querySelector('.notice__form');
+
+
+//mapPins.appendChild(fragment);
+//map.insertBefore(renderCard(similar[i]), mapFilters);
