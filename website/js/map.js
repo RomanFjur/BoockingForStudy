@@ -1,269 +1,13 @@
-function getRandomIntInclusive (min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
-}
-
-var bookingFeatures = [
-  'wifi',
-  'dishwasher',
-  'parking',
-  'washer',
-  'elevator',
-  'conditioner'
-];
-
-var randomFeaturesLength = function (min, max) {
-  bookingFeatures.length = getRandomIntInclusive (min, max);
-  return bookingFeatures;
-};
-
-var photos = ["http://o0.github.io/assets/images/tokyo/hotel1.jpg", "http://o0.github.io/assets/images/tokyo/hotel2.jpg", "http://o0.github .io/assets/images/tokyo/hotel3.jpg"];
-
-var randomPhotos = function (arr) {
-	var j;
-  var temp;
-	for (var i = arr.length - 1; i > 0; i--) {
-		j = Math.floor(Math.random()*(i + 1));
-		temp = arr[j];
-		arr[j] = arr[i];
-		arr[i] = temp;
-	}
-	return arr;
-}
-
-var similar = [
-  {
-    author: {
-      avatar: 'img/avatars/user01.png'
-    },
-    offer: {
-      title: 'Большая уютная квартира',
-      address: function () {
-        return location.x;
-      }, //и вот хрен пойми как это сделать!
-      price: getRandomIntInclusive (1000, 100000),
-      type: 'flat',
-      rooms: getRandomIntInclusive (1, 5),
-      guests: getRandomIntInclusive (1, 20),
-      checkin: '12:00',
-      checkout: '12:00',
-      features: randomFeaturesLength(1, 6),
-      description: '',
-      photos: randomPhotos(photos)
-    },
-    location: {
-      x: getRandomIntInclusive (100, 800),
-      y: getRandomIntInclusive (130, 630)
-    }
-  },
-  {
-    author: {
-      avatar: 'img/avatars/user02.png'
-    },
-    offer: {
-      title: 'Маленькая неуютная квартира',
-      address: function () {
-        return location.x;
-      },
-      price: getRandomIntInclusive (1000, 100000),
-      type: 'flat',
-      rooms: getRandomIntInclusive (1, 5),
-      guests: getRandomIntInclusive (1, 20),
-      checkin: '14:00',
-      checkout: '14:00',
-      features: randomFeaturesLength(1, 6),
-      description: '',
-      photos: randomPhotos(photos)
-    },
-    location: {
-      x: getRandomIntInclusive (100, 800),
-      y: getRandomIntInclusive (130, 630)
-    }
-  },
-  {
-    author: {
-      avatar: 'img/avatars/user03.png'
-    },
-    offer: {
-      title: 'Огромный прекрасный дворец',
-      address: function () {
-        return location.x;
-      },
-      price: getRandomIntInclusive (1000, 100000),
-      type: 'palace',
-      rooms: getRandomIntInclusive (1, 5),
-      guests: getRandomIntInclusive (1, 20),
-      checkin: '12:00',
-      checkout: '12:00',
-      features: randomFeaturesLength(1, 6),
-      description: '',
-      photos: randomPhotos(photos)
-    },
-    location: {
-      x: getRandomIntInclusive (100, 800),
-      y: getRandomIntInclusive (130, 630)
-    }
-  },
-  {
-    author: {
-      avatar: 'img/avatars/user04.png'
-    },
-    offer: {
-      title: 'Маленький ужасный дворец',
-      address: function () {
-        return location.x;
-      },
-      price: getRandomIntInclusive (1000, 100000),
-      type: 'palace',
-      rooms: getRandomIntInclusive (1, 5),
-      guests: getRandomIntInclusive (1, 20),
-      checkin: '13:00',
-      checkout: '13:00',
-      features: randomFeaturesLength(1, 6),
-      description: '',
-      photos: randomPhotos(photos)
-    },
-    location: {
-      x: getRandomIntInclusive (100, 800),
-      y: getRandomIntInclusive (130, 630)
-    }
-  },
-  {
-    author: {
-      avatar: 'img/avatars/user05.png'
-    },
-    offer: {
-      title: 'Красивый гостевой домик',
-      address: function () {
-        return location.x;
-      },
-      price: getRandomIntInclusive (1000, 100000),
-      type: 'house',
-      rooms: getRandomIntInclusive (1, 5),
-      guests: getRandomIntInclusive (1, 20),
-      checkin: '12:00',
-      checkout: '12:00',
-      features: randomFeaturesLength(1, 6),
-      description: '',
-      photos: randomPhotos(photos)
-    },
-    location: {
-      x: getRandomIntInclusive (100, 800),
-      y: getRandomIntInclusive (130, 630)
-    }
-  },
-  {
-    author: {
-      avatar: 'img/avatars/user06.png'
-    },
-    offer: {
-      title: 'Некрасивый негостеприимный домик',
-      address: function () {
-        return location.x;
-      },
-      price: getRandomIntInclusive (1000, 100000),
-      type: 'house',
-      rooms: getRandomIntInclusive (1, 5),
-      guests: getRandomIntInclusive (1, 20),
-      checkin: '13:00',
-      checkout: '13:00',
-      features: randomFeaturesLength(1, 6),
-      description: '',
-      photos: randomPhotos(photos)
-    },
-    location: {
-      x: getRandomIntInclusive (100, 800),
-      y: getRandomIntInclusive (130, 630)
-    }
-  },
-  {
-    author: {
-      avatar: 'img/avatars/user07.png'
-    },
-    offer: {
-      title: 'Уютное бунгало далеко от моря',
-      address: function () {
-        return location.x;
-      },
-      price: getRandomIntInclusive (1000, 100000),
-      type: 'bungalo',
-      rooms: getRandomIntInclusive (1, 5),
-      guests: getRandomIntInclusive (1, 20),
-      checkin: '14:00',
-      checkout: '14:00',
-      features: randomFeaturesLength(1, 6),
-      description: '',
-      photos: randomPhotos(photos)
-    },
-    location: {
-      x: getRandomIntInclusive (100, 800),
-      y: getRandomIntInclusive (130, 630)
-    }
-  },
-  {
-    author: {
-      avatar: 'img/avatars/user08.png'
-    },
-    offer: {
-      title: 'Неуютное бунгало по колено в воде',
-      address: function () {
-        return location.x;
-      },
-      price: getRandomIntInclusive (1000, 100000),
-      type: 'bungalo',
-      rooms: getRandomIntInclusive (1, 5),
-      guests: getRandomIntInclusive (1, 20),
-      checkin: '14:00',
-      checkout: '14:00',
-      features: randomFeaturesLength(1, 6),
-      description: '',
-      photos: randomPhotos(photos)
-    },
-    location: {
-      x: getRandomIntInclusive (100, 800),
-      y: getRandomIntInclusive (130, 630)
-    }
-  },
-  {
-    author: {
-      avatar: 'img/avatars/user01.png'
-    },
-    offer: {
-      title: 'Большая уютная квартира',
-      address: function () {
-        var coordinates = [this.location.x, this.location.y];
-        return coordinates;
-      },
-      price: getRandomIntInclusive (1000, 100000),
-      type: 'palace',
-      rooms: getRandomIntInclusive (1, 5),
-      guests: getRandomIntInclusive (1, 20),
-      checkin: '12:00',
-      checkout: '12:00',
-      features: randomFeaturesLength(1, 6),
-      description: '',
-      photos: randomPhotos(photos),
-      location: {
-        x: getRandomIntInclusive (100, 800),
-        y: getRandomIntInclusive (130, 630)
-      }
-    }
-  }
-];
-
 var map = document.querySelector('.map');
 var mapPinMain = document.querySelector('.map__pin--main');
-
-mapPinMain.addEventListener('mouseup', function () {
-  map.classList.remove('map--faded');
-  bookingForm.classList.remove('notice__form--disabled');
-});
-
+var addressInput = document.querySelector('#address');
+var bookingForm = document.querySelector('.notice__form');
 var mapPin = document.querySelector('template').content.querySelector('.map__pin');
 var mapCard = document.querySelector('template').content.querySelector('.map__card');
 var mapPins = document.querySelector('.map__pins');
 var mapFilters = document.querySelector('.map__filters-container');
+
+addressInput.value = [546, 375];
 
 var renderPin = function (pin) {
   var pinElement = mapPin.cloneNode(true);
@@ -275,21 +19,112 @@ var renderPin = function (pin) {
 
 var renderCard = function (card) {
   var cardElement = mapCard.cloneNode(true);
+  cardElement.querySelector('.popup__avatar').src = card.author.avatar;
   cardElement.querySelector('.popup__title').textContent = card.offer.title;
   cardElement.querySelector('.popup__text--address').textContent = "Наши координаты " + card.offer.address();
   cardElement.querySelector('.popup__price').textContent = card.offer.price + "₽/ночь";
   cardElement.querySelector('.popup__text--capacity').textContent = card.offer.rooms + " комнаты для " + card.offer.guests + " гостей";
   cardElement.querySelector('.popup__text--time').textContent = "Заезд после " + card.offer.checkin + ", выезд до " + card.offer.checkout;
   return cardElement;
-}
-
-var fragment = document.createDocumentFragment();
-for (var i = 0; i < similar.length - 1; i++) {
-  fragment.appendChild(renderPin(similar[i]));
 };
 
-var bookingForm = document.querySelector('.notice__form');
+for (var i = 0; i < Data.mySimilar.length; i++) {
+  mapPins.appendChild(renderPin(similar[i])).classList.add('pin', 'hidden');
+  map.appendChild(renderCard(similar[i])).classList.add('card', 'hidden');
+};
 
+var pinElements = mapPins.getElementsByClassName('pin');
+var cardElements = map.getElementsByClassName('card');
+var closeCard = map.querySelectorAll('.popup__close');
 
-//mapPins.appendChild(fragment);
-//map.insertBefore(renderCard(similar[i]), mapFilters);
+mapPins.addEventListener('click', function () {
+  var pinTarget = event.target;
+
+  for (var i = 0; i < pinElements.length; i++) {
+    cardElements[i].classList.add('hidden');
+  };
+
+  for (var i = 0; i < pinElements.length; i++) {
+    if (pinElements[i] == pinTarget || pinElements[i].querySelector('img') == pinTarget) {
+      cardElements[i].classList.remove('hidden');
+    };
+  };
+});
+
+map.addEventListener('click', function () {
+  var closeTarget = event.target;
+  for (var i = 0; i < closeCard.length; i++) {
+    if (closeCard[i] == closeTarget) {
+      cardElements[i].classList.add('hidden');
+    };
+  };
+});
+
+document.addEventListener('keydown', function () {
+  if (event.keyCode == 27) {
+    for (var i = 0; i < cardElements.length; i++) {
+      cardElements[i].classList.add('hidden');
+    };
+  };
+});
+
+mapPinMain.addEventListener('mousedown', function (event) {
+  event.preventDefault();
+
+  var startCoords = {
+    x: event.clientX,
+    y: event.clientY
+  };
+
+  var onMouseMove = function (evtMove) {
+    evtMove.preventDefault();
+
+    var shift = {
+      x: startCoords.x - evtMove.clientX,
+      y: startCoords.y - evtMove.clientY
+    };
+
+    startCoords = {
+      x: evtMove.clientX,
+      y: evtMove.clientY
+    };
+
+    mapPinMain.style.top = (mapPinMain.offsetTop - shift.y) + 'px';
+    mapPinMain.style.left = (mapPinMain.offsetLeft - shift.x) + 'px';
+
+    var mainPinStyleTop = (mapPinMain.offsetTop - shift.y);
+    var mainPinStyleLeft = (mapPinMain.offsetLeft - shift.x);
+    var mapWidth = map.offsetWidth;
+
+    if (mainPinStyleTop < 130) {
+        mapPinMain.style.top = 130 + 'px';
+    } else if (mainPinStyleTop > 630) {
+        mapPinMain.style.top = 630 + 'px';
+    };
+
+    if (mainPinStyleLeft < 0) {
+      mapPinMain.style.left = 0 + 'px';
+    } else if (mainPinStyleLeft > mapWidth) {
+      mapPinMain.style.left = mapWidth + 'px';
+    };
+    //Разобраться по пункту 3.4 (расчёт координат по игле пина, а не по его верхнему углу)
+  };
+
+  var onMouseUp = function (evtUp) {
+    evtUp.preventDefault();
+
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+
+    map.classList.remove('map--faded');
+    bookingForm.classList.remove('notice__form--disabled');
+    addressInput.value = [mapPinMain.offsetLeft, mapPinMain.offsetTop];
+
+    for (var i = 0; i < pinElements.length; i++) {
+      pinElements[i].classList.remove('hidden');
+    };
+  };
+
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+});

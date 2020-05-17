@@ -170,6 +170,10 @@ textarea:focus {
   background: url("../img/logo.png") no-repeat center;
 }
 
+.hidden {
+  display: none;
+}
+
 .map {
   height: 750px;
 
