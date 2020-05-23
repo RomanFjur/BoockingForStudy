@@ -128,3 +128,5 @@ mapPinMain.addEventListener('mousedown', function (event) {
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
 });
+
+console.log(1);
